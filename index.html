@@ -68,15 +68,15 @@
     <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-    <section id="hero">
+    <section id="hero" class="text-white">
       <div class="container">
         <div class="row justify-content-between">
           <div
-            class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center"
+            class="full-height-container col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center"
           >
-            <div data-aos="zoom-out">
-              <div class="text-center text-lg-start">
-                                <button
+            <div data-aos="zoom-out ">
+              <div class="text-center text-lg-start  button-container">
+                  <button
                   type="button"
                   class="btn btn-primary btn-get-started"
                   data-bs-toggle="modal"
@@ -84,38 +84,13 @@
                 >
                   Cadastre-se grátis
                 </button>
-              </div>
+              </div> 
             </div>
+             <a href="#" class="text-center text-white">Já é jogador do h2 poker online? clique aqui</a>
           </div>
-          <div
-            class="col-lg-4 order-1 order-lg-2 hero-img"
-            data-aos="zoom-out"
-            data-aos-delay="300"
-          >
-            <img
-              src="assets/img/hero-img.png"
-              class="img-fluid animated"
-              alt=""
-            />
           </div>
-        </div>
       </div>
-
-      <!--  <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
-      <defs>
-        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
-      </defs>
-      <g class="wave1">
-        <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
-      </g>
-      <g class="wave2">
-        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
-      </g>
-      <g class="wave3">
-        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
-      </g>
-    </svg>
- -->
+     
     </section>
     <!-- End Hero -->
     <link
@@ -128,63 +103,67 @@
       rel="stylesheet"
       type="text/css"
     />
-    <script
-      type="text/javascript"
-      src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1581152197/smartwizard/jquery.smartWizard.min.js"
-    ></script>
-    <div class="container">
-      <!-- Modal -->
-      <div class="modal fade" id="multiStepFormModal" tabindex="-1" aria-labelledby="multiStepFormModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h5 class="modal-title" id="multiStepFormModalLabel">Criar Conta</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <!-- Form -->
-        <form id="multiStepForm">
-          
-          <!-- Step 1 -->
-          <div class="step step-1 active">
-            <div class="form-group">
-          <div class="col-md-6"> <input type="text" class="form-control" placeholder="Nome" required>
-           </div>
-            <div class="col-md-6"> <input type="text" class="form-control" placeholder="Email" />
+  <div class="container">
+  <div class="modal fade" id="multiStepFormModal" tabindex="-1" aria-labelledby="multiStepFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+        <!--   <h5 class="modal-title text-center" id="multiStepFormModalLabel">Criar Conta</h5> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="progress" id="formProgressBar">
+            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
             </div>
-            <button type="button" class="btn btn-primary next-step">Avançar</button>
           </div>
-          
-          <!-- Step 2 -->
-          <div class="step step-2">
-            <div class="form-group">
-              <label for="input2">Input 2</label>
-              <input type="text" class="form-control" id="input2">
+          <form id="multiStepForm">
+            <div class="step step-1 active">
+              <label class="step-label">Passo 1</label> 
+              <h4>Informações Pessoais</h4>
+                <div class="form-group">
+                  <div class="">
+                    <input type="text" class="form-control" placeholder="Nome" required>
+                  </div>
+                  <div class="">
+                    <input type="email" class="form-control" placeholder="Email" required>
+                  </div>
+                </div>
+                <div class="single-button"><button type="button" class="btn btn-primary next-step">Avançar</button></div>
             </div>
-            <button type="button" class="btn btn-secondary prev-step">Previous</button>
-            <button type="button" class="btn btn-primary next-step">Avançar</button>
-          </div>
-          
-          <!-- Step 3 -->
-          <div class="step step-3">
-            <div class="form-group">
-              <label for="input3">Input 3</label>
-              <input type="text" class="form-control" id="input3">
+            <div class="step step-2">
+              <label class="step-label">Passo 2</label>  
+              <h4>Detalhes de Login</h4>
+              <div class="form-group">
+                <div class="">
+                  <input type="text" class="form-control" placeholder="Nome de Usuário" required>
+                </div>
+                <div class="">
+                  <input type="password" class="form-control" placeholder="Senha" required>
+                </div>
+              </div>
+              <div class="button-group">
+                <button type="button" class="btn btn-secondary prev-step">Voltar</button>
+              <button type="button" class="btn btn-primary next-step">Avançar</button></div>
+              
             </div>
-            <button type="button" class="btn btn-secondary prev-step">Voltar</button>
-            <button type="submit" class="btn btn-success">Submit</button>
-          </div>
-          
-        </form>
+            <div class="step step-3">
+             <h4>Confirmação</h4>
+              <p>Por favor verifique as informações:</p>
+              <ul id="summaryList"> 
+                </ul>
+                <div class="button-group">
+                  <button type="button" class="btn btn-secondary prev-step">Voltar</button>
+                  <button type="submit" class="btn btn-success">Criar Conta</button>
+                </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
+</div>
     <div id="preloader"></div>
-
     <!-- Vendor JS Files -->
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>

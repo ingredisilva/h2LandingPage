@@ -13,9 +13,6 @@
     }
   };
 
-  /**
-   * Easy event listener function
-   */
   const on = (type, el, listener, all = false) => {
     let selectEl = select(el, all);
     if (selectEl) {
@@ -90,23 +87,6 @@
     window.addEventListener("load", headerScrolled);
     onscroll(document, headerScrolled);
   }
-
-  /**
-   * Back to top button
-   */
-  let backtotop = select(".back-to-top");
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add("active");
-      } else {
-        backtotop.classList.remove("active");
-      }
-    };
-    window.addEventListener("load", toggleBacktotop);
-    onscroll(document, toggleBacktotop);
-  }
-
   /**
    * Mobile nav toggle
    */
@@ -174,7 +154,7 @@
       preloader.remove();
     });
   }
- 
+
   /**
 
   /**
@@ -195,38 +175,65 @@
   new PureCounter();
 })();
 
-document.addEventListener("DOMContentLoaded", (e) => {
-  let currentStep = 1;
-  const numberOfSteps = 3;
-  const form = document.getElementById("multiStepForm");
+const form = document.getElementById("multiStepForm");
+const steps = Array.from(document.querySelectorAll(".step"));
+const nextButtons = document.querySelectorAll(".next-step");
+const prevButtons = document.querySelectorAll(".prev-step");
+const progressBar = document
+  .getElementById("formProgressBar")
+  .querySelector(".progress-bar");
+const summaryList = document.getElementById("summaryList");
 
-  form.querySelectorAll(".next-step").forEach((button) => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (currentStep < numberOfSteps) {
-        form.querySelector(".step-" + currentStep).classList.remove("active");
-        form.querySelector(".step-" + ++currentStep).classList.add("active");
-      }
-    });
-  });
+let currentStep = 0;
 
-  form.querySelectorAll(".prev-step").forEach((button) => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (currentStep > 1) {
-        form.querySelector(".step-" + currentStep).classList.remove("active");
-        form.querySelector(".step-" + --currentStep).classList.add("active");
-      }
-    });
-  });
+function updateProgressBar() {
+  width = (currentStep / (steps.length - 1)) * 100;
+  progressBar.style.width = width + "%";
+  progressBar.setAttribute("aria-valuenow", width);
+}
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    // Implement submission logic here...
-    alert("Form submitted!");
-    // Close modal after submission
-    var modalEl = document.getElementById("multiStepFormModal");
-    var modal = bootstrap.Modal.getInstance(modalEl);
-    modal.hide();
+function displaySummary() {
+  summaryList.innerHTML = "";
+
+  steps.forEach((step, index) => {
+    if (index <= currentStep) {
+      const inputs = Array.from(step.querySelectorAll("input"));
+      inputs.forEach((input) => {
+        if (input.value) {
+          const listItem = document.createElement("li");
+          listItem.textContent = `${input.placeholder}: ${input.value}`;
+          summaryList.appendChild(listItem);
+        }
+      });
+    }
   });
+}
+
+function handleStepNavigation(direction) {
+  const currentActiveStep = steps[currentStep];
+  currentActiveStep.classList.remove("active");
+
+  if (direction === "next") {
+    currentStep++;
+  } else {
+    currentStep--;
+  }
+
+  if (currentStep === steps.length - 1) {
+    displaySummary();
+  }
+
+  steps[currentStep].classList.add("active");
+  updateProgressBar();
+}
+
+nextButtons.forEach((button) => {
+  button.addEventListener("click", () => handleStepNavigation("next"));
 });
+
+prevButtons.forEach((button) => {
+  button.addEventListener("click", () => handleStepNavigation("prev"));
+});
+
+// Call initially to set the progress bar
+updateProgressBar();
